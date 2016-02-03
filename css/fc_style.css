@@ -251,6 +251,9 @@ body {
   color: black;
   margin-right: 5px;
 }
+.chosen-container .chosen-drop {
+  color: #000; 
+}
 .control {
   display: none;
 }
