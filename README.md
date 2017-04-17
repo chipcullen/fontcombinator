@@ -1,4 +1,4 @@
-#The Web Font Combinator
+# The Web Font Combinator
 
 This is the source code for [http://font-combinator.com][1].
 
