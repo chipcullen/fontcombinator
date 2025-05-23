@@ -22,6 +22,12 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
     });
     axesString = axesTags.join(",") + "@" + axesRanges.join(",");
   }
+
+  // remove existing link to google fonts for selectedFont
+  // if we don't do this there is a weird collision at 400 weight
+  const existingLink = document.querySelector(`link[href*="${selectedFont}"]`);
+  if (existingLink) existingLink.remove();
+  // add new link to google fonts with text set to null, and added axes
   buildLinkToGoogleFonts(selectedFont, null, axesString);
   document.querySelector(target).style.fontFamily = selectedFontObject.family;
 });

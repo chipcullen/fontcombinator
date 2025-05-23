@@ -1,5 +1,5 @@
 import { SUBSET } from "./constants.js";
-import { topVariableFonts } from "./get-google-fonts.js";
+import { configuredFonts } from "./configured-fonts.js";
 
 const buildLinkToGoogleFonts = (slug, text, axes) => {
   const link = document.createElement("link");
@@ -22,6 +22,6 @@ const buildLinkToGoogleFonts = (slug, text, axes) => {
 
 export { buildLinkToGoogleFonts };
 
-topVariableFonts.forEach((font) => {
+configuredFonts.forEach((font) => {
   buildLinkToGoogleFonts(font.slug, font.family);
 });
