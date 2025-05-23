@@ -22,7 +22,19 @@ const getAllGoogleFonts = async (
   const response = await fetch(url);
   const data = await response.json();
 
-  const { items } = data;
+  let { items } = data;
+
+  // Special case the "Noto Sans" and "Noto Serif" families
+  items = items.filter((font) => {
+    // to only include the root family "Noto Sans" and "Noto Serif"
+    return (
+      // All the other forms have "Noto Sans Example" or "Noto Serif Example"
+      // but are considered latin subsets.
+      // This is confusing.
+      !font.family.includes("Noto Sans ") &&
+      !font.family.includes("Noto Serif ")
+    );
+  });
 
   // for each item, add a slug with spaces replaced by +
   items.forEach((item) => {
@@ -33,6 +45,7 @@ const getAllGoogleFonts = async (
 };
 
 const allFonts = await getAllGoogleFonts("popularity");
+const topFonts = allFonts.slice(0, TOP_NUMBER_OF_FONTS);
 
 const variableFonts = allFonts.filter((font) => {
   return font.axes !== undefined;
@@ -40,4 +53,4 @@ const variableFonts = allFonts.filter((font) => {
 
 const topVariableFonts = variableFonts.slice(0, TOP_NUMBER_OF_FONTS);
 
-export { allFonts, variableFonts, topVariableFonts };
+export { allFonts, variableFonts, topVariableFonts, topFonts };
