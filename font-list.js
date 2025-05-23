@@ -24,7 +24,10 @@ fontListTemplate.innerHTML = `
   }
 }
 </style>
-<select></select>
+<label>
+  <slot></slot>
+  <select></select>
+</label>
 `;
 
 class FontList extends HTMLElement {
