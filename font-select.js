@@ -1,8 +1,8 @@
 import { configuredFonts } from "./configured-fonts.js";
 import { FONT_CHANGE_EVENT } from "./constants.js";
 
-const fontListTemplate = document.createElement("template");
-fontListTemplate.innerHTML = `
+const fontSelectTemplate = document.createElement("template");
+fontSelectTemplate.innerHTML = `
 <style>
   select {
   &, &::picker(select) {
@@ -30,11 +30,11 @@ fontListTemplate.innerHTML = `
 </label>
 `;
 
-class FontList extends HTMLElement {
+class FontSelect extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: "open" });
-    shadow.append(fontListTemplate.content.cloneNode(true));
+    shadow.append(fontSelectTemplate.content.cloneNode(true));
     this.select = shadow.querySelector("select");
   }
 
@@ -87,4 +87,4 @@ class FontList extends HTMLElement {
   }
 }
 
-customElements.define("font-list", FontList);
+customElements.define("font-select", FontSelect);

@@ -29,7 +29,6 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
   if (existingLink) existingLink.remove();
   // add new link to google fonts with text set to null, and added axes
   buildLinkToGoogleFonts(selectedFont, null, axesString);
-  console.log(selectedFontObject.family);
   document.querySelector(
     target
     // this string treatment is weird, but we need it in case the font family has a number
