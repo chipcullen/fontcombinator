@@ -4,7 +4,11 @@ import { SUBSET, PUBLIC_API_KEY, TOP_NUMBER_OF_FONTS } from "./constants.js";
 // category: serif | sans-serif | monospace | display | handwriting
 // capability: VF | WOFF2
 // sort: alpha | date | popularity | style | trending
-const getGoogleFonts = async (sort = "alpha", capability = "VF", category) => {
+const getAllGoogleFonts = async (
+  sort = "alpha",
+  capability = "VF",
+  category
+) => {
   const url = new URL("https://www.googleapis.com/webfonts/v1/webfonts");
   url.searchParams.append("key", PUBLIC_API_KEY);
   url.searchParams.append("sort", sort);
@@ -28,7 +32,7 @@ const getGoogleFonts = async (sort = "alpha", capability = "VF", category) => {
   return items;
 };
 
-const allFonts = await getGoogleFonts("popularity");
+const allFonts = await getAllGoogleFonts("popularity");
 
 const variableFonts = allFonts.filter((font) => {
   return font.axes !== undefined;
