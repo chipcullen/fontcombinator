@@ -22,6 +22,11 @@ const buildLinkToGoogleFonts = (slug, text, axes) => {
 
 export { buildLinkToGoogleFonts };
 
-configuredFonts.forEach((font) => {
-  buildLinkToGoogleFonts(font.slug, font.family);
-});
+// This builds links to all of the google fonts that are configured
+// Since these are used in styled select elements, we only want to do this
+// if the browser supports the `appearance: base-select` CSS property
+if (CSS.supports("appearance: base-select")) {
+  configuredFonts.forEach((font) => {
+    buildLinkToGoogleFonts(font.slug, font.family);
+  });
+}
