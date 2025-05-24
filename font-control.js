@@ -13,6 +13,17 @@ fontControlTemplate.innerHTML = `
     border-radius: 5px;
     background-color: #f9f9f9;
   }
+
+  @supports not (text-box-trim: none) {
+    .text-box-trim-control {
+      display: none;
+    }
+  }
+  @supports not (text-box-edge: auto) {
+    .text-box-edge-control {
+      display: none;
+    }
+  }
 </style>
 <div class="font-control">
   <label>
@@ -30,7 +41,7 @@ fontControlTemplate.innerHTML = `
     <input type="color" data-css-property="color" value="#000000" />
     <span>#000000</span>
   </label>
-  <label>
+  <label class="text-box-trim-control">
     Text Box Trim:
     <select data-css-property="textBoxTrim">
       <option value="none">None</option>
@@ -39,7 +50,7 @@ fontControlTemplate.innerHTML = `
       <option value="trim-end">Trim End</option>
     </select>
   </label>
-  <label>
+  <label class="text-box-edge-control">
     Text Box Edge:
     <select data-css-property="textBoxEdge">
       <option value="auto">auto</option>
@@ -99,18 +110,18 @@ class FontControl extends HTMLElement {
     }
   }
 
-  static get observedAttributes() {
-    return ["target"];
-  }
+  // static get observedAttributes() {
+  //   return ["target"];
+  // }
 
-  async attributeChangedCallback(name, oldValue, newValue) {
-    switch (name) {
-      case "target":
-        break;
-      default:
-        break;
-    }
-  }
+  // async attributeChangedCallback(name, oldValue, newValue) {
+  //   switch (name) {
+  //     case "target":
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   async connectedCallback() {}
 }
