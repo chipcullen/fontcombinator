@@ -53,4 +53,17 @@ const variableFonts = allFonts.filter((font) => {
 
 const topVariableFonts = variableFonts.slice(0, TOP_NUMBER_OF_FONTS);
 
-export { allFonts, variableFonts, topVariableFonts, topFonts };
+const getSelectedFontObject = (fontSlug) => {
+  const selectedFontObject = allFonts.find((font) => {
+    return font.slug === fontSlug;
+  });
+  return selectedFontObject;
+};
+
+export {
+  allFonts,
+  variableFonts,
+  topVariableFonts,
+  topFonts,
+  getSelectedFontObject,
+};

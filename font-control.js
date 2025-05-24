@@ -1,19 +1,54 @@
+import { getSelectedFontObject } from "./get-google-fonts.js";
 import { FONT_CHANGE_EVENT, STYLE_CHANGE_EVENT } from "./constants.js";
 
 const fontControlTemplate = document.createElement("template");
 fontControlTemplate.innerHTML = `
 <style>
+  .font-control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
 </style>
-<div>
+<div class="font-control">
   <label>
-    Size:
+    Font Size:
     <input type="range" data-css-property="fontSize" data-css-unit="px" min="1" max="100" value="16" />
     <span>16px</span>
+  </label>
+  <label>
+    Line Height:
+    <input type="range" data-css-property="lineHeight" min="0.5" max="4" step="0.1" value="1.5" />
+    <span>1.5</span>
   </label>
   <label>
     Color:
     <input type="color" data-css-property="color" value="#000000" />
     <span>#000000</span>
+  </label>
+  <label>
+    Text Box Trim:
+    <select data-css-property="textBoxTrim">
+      <option value="none">None</option>
+      <option value="trim-both">Trim Both</option>
+      <option value="trim-start">Trim Start</option>
+      <option value="trim-end">Trim End</option>
+    </select>
+  </label>
+  <label>
+    Text Box Edge:
+    <select data-css-property="textBoxEdge">
+      <option value="auto">auto</option>
+      <option value="cap alphabetic">cap alphabetic</option>
+      <option value="text">text</option>
+      <option value="text text">text text</option>
+      <option value="text alphabetic">text alphabetic</option>
+      <option value="ex text">ex text</option>
+    </select>
   </label>
 </div>
 `;
@@ -33,9 +68,9 @@ class FontControl extends HTMLElement {
       e.type === FONT_CHANGE_EVENT &&
       e.detail.target === this.getAttribute("target")
     ) {
-      console.log(
-        "need to determine if the font is variable and what axis it has"
-      );
+      // @TODO handle variable fonts vs non-variable fonts
+      const selectedFontObject = getSelectedFontObject(e.detail.slug);
+      console.log(selectedFontObject);
     }
 
     if (e.type === "input") {
@@ -45,7 +80,9 @@ class FontControl extends HTMLElement {
       const cssUnit = input.dataset.cssUnit;
       const span = input.nextElementSibling;
 
-      span.innerText = `${value}${cssUnit ? cssUnit : ""}`;
+      if (span) {
+        span.innerText = `${value}${cssUnit ? cssUnit : ""}`;
+      }
 
       const styleChangeEvent = new CustomEvent(STYLE_CHANGE_EVENT, {
         detail: {

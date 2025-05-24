@@ -9,6 +9,11 @@ fontSelectTemplate.innerHTML = `
     appearance: base-select;
     font-family: sans-serif;
     max-width: 100vw;
+
+    h2 {
+      font-size: 1.2em;
+      margin: 10px;
+      }
   }
   option {
     outline: 1px solid grey;
@@ -25,8 +30,11 @@ fontSelectTemplate.innerHTML = `
 }
 </style>
 <label>
-  <slot></slot>
-  <select></select>
+  Font Family:
+  <select>
+    <h2>Google Fonts</h2>
+    <hr />
+  </select>
 </label>
 `;
 
