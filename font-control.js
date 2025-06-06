@@ -131,7 +131,7 @@ class FontControl extends HTMLElement {
   }
 
   adjustVariableControls(selectedFontObject) {
-    console.log("Adjusting variable controls for:", selectedFontObject);
+    // console.log("Adjusting variable controls for:", selectedFontObject);
 
     const { axes, variants } = selectedFontObject;
     const variableControlsContainer =
@@ -139,7 +139,7 @@ class FontControl extends HTMLElement {
     variableControlsContainer.innerHTML = ""; // Clear previous controls
     // @TODO handle variable fonts vs non-variable fonts
     if (variants && variants.length > 0) {
-      console.log(variants);
+      // console.log(variants);
       variants.forEach((variant) => {
         switch (variant) {
           case "regular":

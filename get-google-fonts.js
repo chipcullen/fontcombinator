@@ -60,10 +60,18 @@ const getSelectedFontObject = (fontSlug) => {
   return selectedFontObject;
 };
 
+const getSelectedFontObjectByFamily = (fontFamily) => {
+  const selectedFontObject = allFonts.find((font) => {
+    return font.family === fontFamily;
+  });
+  return selectedFontObject;
+};
+
 export {
   allFonts,
   variableFonts,
   topVariableFonts,
   topFonts,
   getSelectedFontObject,
+  getSelectedFontObjectByFamily,
 };

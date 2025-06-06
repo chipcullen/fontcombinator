@@ -25,4 +25,11 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
     // this string treatment is weird, but we need it in case the font family has a number
     // in it's name. JS doesn't like that out of the box.
   ).style.fontFamily = `'${selectedFontObject.family}'`;
+  const config = JSON.parse(localStorage.getItem("config"));
+  if (!config) {
+    console.warn("No config found in localStorage.");
+    return;
+  }
+  config[target].fontFamily = selectedFontObject.family;
+  localStorage.setItem("config", JSON.stringify(config));
 });
