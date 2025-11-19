@@ -52,15 +52,6 @@ fontControlTemplate.innerHTML = `
       <input type="color" data-css-property="color" value="#000000" />
       <span>#000000</span>
     </label>
-    <label class="text-box-trim-control">
-      Text Box Trim:
-      <select data-css-property="textBoxTrim">
-        <option value="none">None</option>
-        <option value="trim-both">Trim Both</option>
-        <option value="trim-start">Trim Start</option>
-        <option value="trim-end">Trim End</option>
-      </select>
-    </label>
     <label class="text-box-edge-control">
       Text Box Edge:
       <select data-css-property="textBoxEdge">
@@ -70,6 +61,15 @@ fontControlTemplate.innerHTML = `
         <option value="text text">text text</option>
         <option value="text alphabetic">text alphabetic</option>
         <option value="ex text">ex text</option>
+      </select>
+    </label>
+    <label class="text-box-trim-control">
+      Text Box Trim:
+      <select data-css-property="textBoxTrim">
+        <option value="none">None</option>
+        <option value="trim-both">Trim Both</option>
+        <option value="trim-start">Trim Start</option>
+        <option value="trim-end">Trim End</option>
       </select>
     </label>
   </div>
