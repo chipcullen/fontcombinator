@@ -44,6 +44,7 @@ class FontSelect extends HTMLElement {
     const shadow = this.attachShadow({ mode: "open" });
     shadow.append(fontSelectTemplate.content.cloneNode(true));
     this.select = shadow.querySelector("select");
+    this.targetedElement = this.getAttribute("target");
   }
 
   static get observedAttributes() {
@@ -60,11 +61,14 @@ class FontSelect extends HTMLElement {
     }
   }
 
-  async connectedCallback() {
+  connectedCallback() {
     // sort configuredFonts by family name
     configuredFonts.sort((a, b) => {
       return a.family.localeCompare(b.family);
     });
+
+    const storedConfig = JSON.parse(localStorage.getItem("config"));
+    const target = this.targetedElement;
 
     configuredFonts.forEach((font, index) => {
       const { family, slug } = font;
@@ -73,6 +77,15 @@ class FontSelect extends HTMLElement {
       option.dataset.family = family;
       option.innerText = family;
       option.style.fontFamily = family;
+
+      if (storedConfig && storedConfig[target]) {
+        const currentFontFamily = storedConfig[target].fontFamily;
+        if (currentFontFamily.includes(family)) {
+          option.selected = true;
+          this.select.style.fontFamily = family;
+        }
+      }
+
       this.select.appendChild(option);
     });
 

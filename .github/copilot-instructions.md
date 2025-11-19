@@ -4,6 +4,8 @@
 
 This is a vanilla JavaScript web application for experimenting with Google Fonts combinations. The project uses modern web standards including ES6 modules, Web Components, and the Google Fonts API.
 
+The idea is to use no framework or build step. Just straight Javascript, HTML and CSS.
+
 ## Architecture & Technologies
 
 - **Vanilla JavaScript**: No frameworks - pure ES6+ JavaScript

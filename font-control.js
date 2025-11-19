@@ -88,6 +88,50 @@ class FontControl extends HTMLElement {
     this.targetedElement = this.getAttribute("target");
   }
 
+  // In the connectedCallback or a separate method
+  updateControlsFromConfig() {
+    const config = JSON.parse(localStorage.getItem("config"));
+    const target = this.targetedElement;
+
+    if (config && config[target]) {
+      const targetConfig = config[target];
+
+      // Update each input based on stored values
+      const inputs = this.shadowRoot.querySelectorAll("input, select");
+      inputs.forEach((input) => {
+        const cssProperty = input.dataset.cssProperty;
+        if (targetConfig[cssProperty]) {
+          input.value = this.extractValueFromConfig(
+            targetConfig[cssProperty],
+            cssProperty
+          );
+          this.updateDisplayValue(input); // Update the span display
+        }
+      });
+    }
+  }
+
+  updateDisplayValue(input) {
+    const span = input.nextElementSibling;
+    if (span) {
+      const cssUnit = input.dataset.cssUnit || "";
+      span.innerText = `${input.value}${cssUnit}`;
+    }
+  }
+
+  extractValueFromConfig(configValue, cssProperty) {
+    // Handle special cases like fontSize "16px" -> "16"
+    if (cssProperty === "fontSize") {
+      return configValue.replace("px", "");
+    }
+    // Handle other unit removals as needed
+    return configValue;
+  }
+
+  connectedCallback() {
+    this.updateControlsFromConfig();
+  }
+
   handleEvent(e) {
     if (
       e.type === FONT_CHANGE_EVENT &&
