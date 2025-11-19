@@ -24,8 +24,12 @@ if (config) {
               buildAxesString(selectedFontObject)
             );
           }
+          // this string treatment is weird, but we need it in case the font family has a number
+          // in it's name. JS doesn't like that out of the box.
+          document.querySelector(target).style[property] = `'${rule}'`;
+        } else {
+          document.querySelector(target).style[property] = rule;
         }
-        document.querySelector(target).style[property] = rule;
       }
     }
   }

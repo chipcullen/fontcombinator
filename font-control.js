@@ -52,6 +52,8 @@ fontControlTemplate.innerHTML = `
       <input type="color" data-css-property="color" value="#000000" />
       <span>#000000</span>
     </label>
+      <div class="variable-controls">
+  </div>
     <label class="text-box-edge-control">
       Text Box Edge:
       <select data-css-property="textBoxEdge">
@@ -73,8 +75,7 @@ fontControlTemplate.innerHTML = `
       </select>
     </label>
   </div>
-  <div class="variable-controls">
-  </div>
+
 </div>
 `;
 
@@ -108,6 +109,12 @@ class FontControl extends HTMLElement {
           this.updateDisplayValue(input); // Update the span display
         }
       });
+
+      const selectedFontObject = getSelectedFontObject(
+        config[target].fontFamily.replaceAll(" ", "+")
+      );
+
+      this.buildVariableControls(selectedFontObject, config);
     }
   }
 
@@ -138,7 +145,7 @@ class FontControl extends HTMLElement {
       e.detail.target === this.getAttribute("target")
     ) {
       const selectedFontObject = getSelectedFontObject(e.detail.slug);
-      this.adjustVariableControls(selectedFontObject);
+      this.buildVariableControls(selectedFontObject);
     }
 
     if (e.type === "input") {
@@ -174,7 +181,7 @@ class FontControl extends HTMLElement {
     }
   }
 
-  adjustVariableControls(selectedFontObject) {
+  buildVariableControls(selectedFontObject, config) {
     // console.log("Adjusting variable controls for:", selectedFontObject);
 
     const { axes, variants } = selectedFontObject;
@@ -244,6 +251,25 @@ class FontControl extends HTMLElement {
         label.appendChild(input);
         label.appendChild(span);
         variableControlsContainer.appendChild(label);
+      });
+    }
+
+    if (config) {
+      // Update variable controls based on stored config
+      const target = this.targetedElement;
+      const targetConfig = config[target];
+
+      const inputs =
+        variableControlsContainer.querySelectorAll("input, select");
+      inputs.forEach((input) => {
+        const cssProperty = input.dataset.cssProperty;
+        if (targetConfig[cssProperty]) {
+          input.value = this.extractValueFromConfig(
+            targetConfig[cssProperty],
+            cssProperty
+          );
+          this.updateDisplayValue(input); // Update the span display
+        }
       });
     }
   }
