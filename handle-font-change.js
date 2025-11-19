@@ -6,7 +6,8 @@ import { buildAxesString } from "./build-axes-string.js";
 document.addEventListener(FONT_CHANGE_EVENT, (e) => {
   const selectedFont = e.detail.slug;
   const target = document.querySelector(e.detail.target);
-
+  const config = JSON.parse(localStorage.getItem("config"));
+  localStorage.setItem("config", JSON.stringify(config));
   const selectedFontObject = getSelectedFontObject(selectedFont);
 
   // Start loading state
@@ -38,12 +39,4 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
       });
     });
   });
-
-  const config = JSON.parse(localStorage.getItem("config"));
-  if (!config) {
-    console.warn("No config found in localStorage.");
-    return;
-  }
-  config[target].fontFamily = selectedFontObject.family;
-  localStorage.setItem("config", JSON.stringify(config));
 });
