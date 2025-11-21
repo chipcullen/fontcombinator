@@ -12,6 +12,7 @@ fontSelectTemplate.innerHTML = `
     appearance: base-select;
     font-family: sans-serif;
     max-width: 100vw;
+    background-color: #fff;
 
     h2 {
       font-size: 1.2em;

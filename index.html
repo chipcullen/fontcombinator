@@ -10,30 +10,38 @@
   <script defer type="module" src="./index.js"></script>
 </head>
 <body>
-<h1 contenteditable="plaintext-only">The Font Combinator!</h1>
-<h2 contenteditable="plaintext-only">You can edit this page</h2>
-<p contenteditable="plaintext-only">Donec ante. Sed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
+
+<section class="content">
+  <h1 contenteditable="plaintext-only">The Font Combinator!</h1>
+  <h2 contenteditable="plaintext-only">You can edit this page</h2>
+  <p contenteditable="plaintext-only">Donec ante. Sed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
+</section>
 
 
-<details open>
-  <summary>Headline</summary>
-  <font-select target="h1"></font-select>
-  <font-control target="h1"></font-control>
-</details>
+<section class="controls">
+  <div class="controls-inner">
+    <details open>
+      <summary>Headline</summary>
+      <font-select target="h1"></font-select>
+      <font-control target="h1"></font-control>
+    </details>
 
-<details open>
-  <summary>Subhead</summary>
-  <font-select target="h2"></font-select>
-  <font-control target="h2"></font-control>
-</details>
-<details open>
-  <summary>Paragraph</summary>
-  <font-select target="p"></font-select>
-  <font-control target="p"></font-control>
-</details>
-<details open>
-  <summary>Page</summary>
-  <color-control target="body"></color-control>
-</details>
+    <details open>
+      <summary>Subhead</summary>
+      <font-select target="h2"></font-select>
+      <font-control target="h2"></font-control>
+    </details>
+    <details open>
+      <summary>Paragraph</summary>
+      <font-select target="p"></font-select>
+      <font-control target="p"></font-control>
+    </details>
+    <details open>
+      <summary>Page</summary>
+      <color-control target="body"></color-control>
+    </details>
+  </div>
+  <p>&copy; Copyright Chip Cullen</p>
+</section>
 </body>
 </html>
