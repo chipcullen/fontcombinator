@@ -1,5 +1,5 @@
 const defaultConfig = {
-  page: {
+  body: {
     backgroundColor: "#ffffff",
   },
   h1: {

@@ -6,6 +6,7 @@
   <title>The Font Combinator!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="./index.css">
   <script defer type="module" src="./index.js"></script>
 </head>
 <body>
@@ -20,15 +21,19 @@
   <font-control target="h1"></font-control>
 </details>
 
-<details>
+<details open>
   <summary>Subhead</summary>
   <font-select target="h2"></font-select>
   <font-control target="h2"></font-control>
 </details>
-<details>
+<details open>
   <summary>Paragraph</summary>
   <font-select target="p"></font-select>
   <font-control target="p"></font-control>
+</details>
+<details open>
+  <summary>Page</summary>
+  <color-control target="body"></color-control>
 </details>
 </body>
 </html>

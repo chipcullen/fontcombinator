@@ -6,5 +6,6 @@ import "./apply-stored-styles.js";
 import "./build-links-to-google-fonts.js";
 import "./font-control.js";
 import "./font-select.js";
+import "./color-control.js";
 import "./handle-font-change.js";
 import "./handle-style-change.js";

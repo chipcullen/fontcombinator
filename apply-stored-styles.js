@@ -10,8 +10,6 @@ const config = JSON.parse(localStorage.getItem("config"));
 if (config) {
   for (const [target, rules] of Object.entries(config)) {
     for (const [property, rule] of Object.entries(rules)) {
-      // console.log(target)
-      // console.log(`${property}: ${rule}`);
       if (target !== "page") {
         if (property === "fontFamily") {
           const selectedFontObject = getSelectedFontObjectByFamily(rule);
@@ -30,6 +28,8 @@ if (config) {
         } else {
           document.querySelector(target).style[property] = rule;
         }
+      } else if (target === "page" && property === "backgroundColor") {
+        document.body.style.backgroundColor = rule;
       }
     }
   }
