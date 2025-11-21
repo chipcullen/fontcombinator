@@ -55,21 +55,29 @@ body {
   }
 
   @container (min-width: 900px) {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap);
+  }
+
+  @container (min-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 details {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  align-self: self-start;
+
   summary {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-block: calc(var(--gap) / 2);
     cursor: pointer;
   }
 
   &:nth-of-type(4) {
-    @container (min-width: 900px) {
+    @container ( 900px < width < 1400px ) {
       grid-column: 1 / 4;
     }
   }

@@ -6,18 +6,19 @@ fontSelectTemplate.innerHTML = `
 <style>
   label {
     font-family: sans-serif;
+    margin-block-end: 10px;
+    display: inline-block;
   }
   select {
   &, &::picker(select) {
     appearance: base-select;
     font-family: sans-serif;
-    max-width: 100vw;
     background-color: #fff;
 
     h2 {
       font-size: 1.2em;
       margin: 10px;
-      }
+    }
   }
   option {
     outline: 1px solid grey;

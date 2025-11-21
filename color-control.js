@@ -7,11 +7,6 @@ colorControlTemplate.innerHTML = `
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    font-family: sans-serif;
   }
 </style>
 <div class="color-control">
