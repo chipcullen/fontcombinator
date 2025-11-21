@@ -4,6 +4,9 @@ import { FONT_CHANGE_EVENT } from "./constants.js";
 const fontSelectTemplate = document.createElement("template");
 fontSelectTemplate.innerHTML = `
 <style>
+  label {
+    font-family: sans-serif;
+  }
   select {
   &, &::picker(select) {
     appearance: base-select;

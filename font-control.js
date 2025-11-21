@@ -16,6 +16,7 @@ fontControlTemplate.innerHTML = `
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+    font-family: sans-serif;
   }
 
   .fixed-controls, .variable-controls {

@@ -26,7 +26,19 @@ export { buildLinkToGoogleFonts };
 // Since these are used in styled select elements, we only want to do this
 // if the browser supports the `appearance: base-select` CSS property
 if (CSS.supports("appearance: base-select")) {
-  configuredFonts.forEach((font) => {
+  const config = JSON.parse(localStorage.getItem("config"));
+
+  // filter out any fonts from config out of the configured fonts.
+  // if we don't do this, there is a weird collision at 400 weight
+  const filteredConfiguredFonts = configuredFonts.filter((font) => {
+    return !Object.values(config).some(
+      (rule) => rule.fontFamily && rule.fontFamily === font.family
+    );
+  });
+
+  // build links to google fonts for each of the filtered fonts;
+  // fonts in the config will have links built in apply-stored-styles.js
+  filteredConfiguredFonts.forEach((font) => {
     buildLinkToGoogleFonts(font.slug, font.family);
   });
 }
