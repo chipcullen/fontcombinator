@@ -1,7 +1,4 @@
-import {
-  getSelectedFontObject,
-  getSelectedFontObjectByFamily,
-} from "./get-google-fonts.js";
+import { getSelectedFontObjectByFamily } from "./get-google-fonts.js";
 import { buildLinkToGoogleFonts } from "./build-links-to-google-fonts.js";
 import { buildAxesString } from "./build-axes-string.js";
 

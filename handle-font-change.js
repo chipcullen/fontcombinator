@@ -2,15 +2,15 @@ import { getSelectedFontObject } from "./get-google-fonts.js";
 import { buildLinkToGoogleFonts } from "./build-links-to-google-fonts.js";
 import { FONT_CHANGE_EVENT } from "./constants.js";
 import { buildAxesString } from "./build-axes-string.js";
+import { updateConfig } from "./update-config.js";
 
 document.addEventListener(FONT_CHANGE_EVENT, (e) => {
   const selectedFont = e.detail.slug;
   const target = e.detail.target;
   const targetElement = document.querySelector(target);
-  const config = JSON.parse(localStorage.getItem("config"));
   const selectedFontObject = getSelectedFontObject(selectedFont);
-  config[target].fontFamily = selectedFontObject.family;
-  localStorage.setItem("config", JSON.stringify(config));
+
+  updateConfig(target, "fontFamily", selectedFontObject.family);
 
   // Start loading state
   targetElement.style.transition = "opacity 0.2s ease";
