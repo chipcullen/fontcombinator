@@ -140,7 +140,6 @@ class FontControl extends HTMLElement {
       e.type === FONT_CHANGE_EVENT &&
       e.detail.target === this.getAttribute("target")
     ) {
-      console.log(e.detail.slug);
       const selectedFontObject = getSelectedFontObject(e.detail.slug);
       this.buildVariableControls(selectedFontObject);
     }
