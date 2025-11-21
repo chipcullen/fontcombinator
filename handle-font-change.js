@@ -13,6 +13,9 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
   if (selectedFontObject) {
     updateConfig(target, "fontFamily", selectedFontObject.family);
 
+    // clear out italic if it was set previously
+    updateConfig(target, "fontStyle", "normal");
+
     // Start loading state
     targetElement.style.transition = "opacity 0.2s ease";
     targetElement.style.opacity = "0.5";
@@ -36,6 +39,8 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
       // this string treatment is weird, but we need it in case the font family has a number
       // in it's name. JS doesn't like that out of the box.
       targetElement.style.fontFamily = `'${selectedFontObject.family}'`;
+      // clear italic style
+      targetElement.style.fontStyle = "normal";
 
       // Check if font loaded and restore opacity
       document.fonts.ready.then(() => {
@@ -46,8 +51,6 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
     });
   } else {
     // System font selected
-    console.log(selectedFont);
-
     switch (selectedFont) {
       case "system-ui":
         targetElement.style.fontFamily =
@@ -73,5 +76,7 @@ document.addEventListener(FONT_CHANGE_EVENT, (e) => {
         break;
     }
     updateConfig(target, "fontFamily", selectedFont);
+    // clear italic style
+    targetElement.style.fontStyle = "normal";
   }
 });
