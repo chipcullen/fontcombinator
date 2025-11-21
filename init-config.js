@@ -19,7 +19,7 @@ switch (true) {
     localStorage.setItem("config", JSON.stringify(defaultConfig));
     break;
   default:
-    console.log("already have a config");
+    // already have a config but no query params - do nothing
     break;
 }
 

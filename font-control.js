@@ -140,6 +140,7 @@ class FontControl extends HTMLElement {
       e.type === FONT_CHANGE_EVENT &&
       e.detail.target === this.getAttribute("target")
     ) {
+      console.log(e.detail.slug);
       const selectedFontObject = getSelectedFontObject(e.detail.slug);
       this.buildVariableControls(selectedFontObject);
     }
@@ -179,11 +180,12 @@ class FontControl extends HTMLElement {
 
   buildVariableControls(selectedFontObject, config) {
     // console.log("Adjusting variable controls for:", selectedFontObject);
-
-    const { axes, variants } = selectedFontObject;
     const variableControlsContainer =
       this.shadowRoot.querySelector(".variable-controls");
     variableControlsContainer.innerHTML = ""; // Clear previous controls
+    if (!selectedFontObject) return;
+
+    const { axes, variants } = selectedFontObject;
     // @TODO handle variable fonts vs non-variable fonts
     if (variants && variants.length > 0) {
       // console.log(variants);

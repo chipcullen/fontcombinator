@@ -37,6 +37,62 @@ fontSelectTemplate.innerHTML = `
 <label>
   Font Family:
   <select>
+    <h2>System Fonts</h2>
+    <option
+      value="arial"
+      data-family="arial"
+      style="font-family: Arial">
+      Arial
+    </option>
+    <option
+      value="helvetica"
+      data-family="helvetica"
+      style="font-family: Helvetica">
+      Helvetica
+    </option>
+    <option
+      value="times-new-roman"
+      data-family="times-new-roman"
+      style="font-family: 'Times New Roman'">
+      Times New Roman
+    </option>
+    <option
+      value="system-ui"
+      data-family="system-ui"
+      style="font-family: -apple-system, BlinkMacSystemFont, sans-serif">
+      system ui
+    </option>
+    <option
+      value="sans-serif"
+      data-family="sans-serif"
+      style="font-family: sans-serif">
+      sans-serif
+    </option>
+    <option
+      value="serif"
+      data-family="serif"
+      style="font-family: serif">
+      serif
+    </option>
+    <option
+      value="monospace"
+      data-family="monospace"
+      style="font-family: monospace">
+      monospace
+    </option>
+    <option
+      value="cursive"
+      data-family="cursive"
+      style="font-family: cursive">
+      cursive
+    </option>
+    <option
+      value="fantasy"
+      data-family="fantasy"
+      style="font-family: fantasy">
+      fantasy
+    </option>
+    <hr />
     <h2>Google Fonts</h2>
     <hr />
   </select>
@@ -74,6 +130,20 @@ class FontSelect extends HTMLElement {
 
     const storedConfig = JSON.parse(localStorage.getItem("config"));
     const target = this.targetedElement;
+
+    // if a system font is selected in storedConfig, set that as selected
+    if (storedConfig && storedConfig[target]) {
+      const currentFontFamily = storedConfig[target].fontFamily;
+      const systemFontOption = Array.from(this.select.options).find(
+        (option) =>
+          option.dataset.family &&
+          currentFontFamily.includes(option.dataset.family)
+      );
+      if (systemFontOption) {
+        systemFontOption.selected = true;
+        this.select.style.fontFamily = systemFontOption.dataset.family;
+      }
+    }
 
     configuredFonts.forEach((font, index) => {
       const { family, slug } = font;
