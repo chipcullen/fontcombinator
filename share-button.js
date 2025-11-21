@@ -1,12 +1,6 @@
 const shareButtonTemplate = document.createElement("template");
 shareButtonTemplate.innerHTML = `
-<style>
-  .button {
-    border: none;
-    outline: 1px solid red
-  }
-</style>
-<button>
+<button class="share-button">
   Share
 </button>
 `;
@@ -15,8 +9,10 @@ class ShareButton extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: "open" });
-    shadow.append(shareButtonTemplate.content.cloneNode(true));
-    shadow.addEventListener("click", this);
+    if (navigator.share !== undefined) {
+      shadow.append(shareButtonTemplate.content.cloneNode(true));
+      shadow.addEventListener("click", this);
+    }
   }
 
   async handleEvent(e) {
