@@ -10,5 +10,6 @@ import "./color-control.js";
 import "./share-button.js";
 import "./copy-url-button.js";
 import "./reset-button.js";
+import "./configure-font-select.js";
 import "./handle-font-change.js";
 import "./handle-style-change.js";

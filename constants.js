@@ -5,3 +5,6 @@ export const SUBSET = "latin";
 // @TODO figure out support for other axes
 export const SUPPORTED_AXES = ["wght", "wdth", "ital", "slnt"];
 export const TOP_NUMBER_OF_FONTS = 100;
+export const TOP_VARIABLE_FONTS = "TOP_VARIABLE_FONTS";
+export const TOP_FONTS = "TOP_FONTS";
+export const ALL_FONTS = "ALL_FONTS";

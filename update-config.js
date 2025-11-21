@@ -1,16 +1,23 @@
 const updateConfig = (target, cssProperty, value, cssUnit = "") => {
   const config = JSON.parse(localStorage.getItem("config"));
-
-  const newConfig = config || {};
-
-  const rule = `${value}${cssUnit ? cssUnit : ""}`;
   if (!config) {
     console.warn("No config found in localStorage.");
     return;
   }
-  newConfig[target][cssProperty] = rule;
-  localStorage.setItem("config", JSON.stringify(newConfig));
-  setConfigAsQueryParams(newConfig);
+
+  const newConfig = config || {};
+
+  if (target === "configuredFonts") {
+    newConfig["configuredFonts"] = value;
+    localStorage.setItem("config", JSON.stringify(newConfig));
+    setConfigAsQueryParams(newConfig);
+    window.location.reload();
+  } else {
+    const rule = `${value}${cssUnit ? cssUnit : ""}`;
+    newConfig[target][cssProperty] = rule;
+    localStorage.setItem("config", JSON.stringify(newConfig));
+    setConfigAsQueryParams(newConfig);
+  }
 };
 
 const setConfigAsQueryParams = (configObj) => {

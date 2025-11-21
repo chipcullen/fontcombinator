@@ -7,7 +7,7 @@ const config = JSON.parse(localStorage.getItem("config"));
 if (config) {
   for (const [target, rules] of Object.entries(config)) {
     for (const [property, rule] of Object.entries(rules)) {
-      if (target !== "page") {
+      if (target !== "configuredFonts") {
         if (property === "fontFamily") {
           const selectedFontObject = getSelectedFontObjectByFamily(rule);
           // NOTE selectedFontObject is only a thing for Google Fonts,

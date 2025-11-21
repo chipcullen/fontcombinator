@@ -1,3 +1,5 @@
+import { TOP_VARIABLE_FONTS } from "./constants.js";
+
 const defaultConfig = {
   body: {
     backgroundColor: "#ffffff",
@@ -41,5 +43,7 @@ const defaultConfig = {
     textBoxEdge: "text alphabetic",
     textBoxTrim: "none",
   },
+  configuredFonts: TOP_VARIABLE_FONTS,
 };
+
 export { defaultConfig };
